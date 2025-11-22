@@ -52,7 +52,7 @@ const createShortLink = async (req, res) => {
       code = await generateShortCode(process.env.CODE_LENGTH);
     }
     console.log(code);
-    const shortUrl = process.env.WEBSITE_NAME + "/" + code;
+    const shortUrl = process.env.WEBSITE_NAME + code;
     await createLink(originalUrl, shortUrl, code);
     return res.status(201).json({ result: shortUrl });
   } catch (error) {
@@ -65,6 +65,28 @@ const getLinks = async (req, res) => {
   try {
     const links = await getAllLinks();
     return res.status(200).json({ result: links });
+  } catch (error) {
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+const getLinksStats = async (req, res) => {
+  try {
+    const code = req.params.code;
+    console.log(code);
+    if (!code) {
+      return res.status(400).json({ error: "Code Not Found." });
+    }
+
+    const [link] = await findLinkByCode(code);
+    console.log("Link:", link);
+    if (!link) {
+      return res.status(400).json({
+        error: "Link Not Found.",
+      });
+    }
+
+    return res.status(200).json({ result: link });
   } catch (error) {
     return res.status(500).json({ error: "Internal server error" });
   }
@@ -121,4 +143,5 @@ module.exports = {
   getLinks,
   deleteShortLink,
   redirectToOriginalUrl,
+  getLinksStats,
 };

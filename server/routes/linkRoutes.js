@@ -5,10 +5,12 @@ const {
   getLinks,
   deleteShortLink,
   redirectToOriginalUrl,
+  getLinksStats,
 } = require("../controllers/linkController");
 
 router.post("/", createShortLink);
 router.get("/", getLinks);
 router.delete("/:code", deleteShortLink);
 router.get("/:code", redirectToOriginalUrl);
+router.get("/code/:code", getLinksStats);
 module.exports = router;
