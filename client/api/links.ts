@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000", // example: http://localhost:5000
+  baseURL: "http://url-shortening-pearl-two.vercel.app", // example: http://localhost:5000
   headers: {
     "Content-Type": "application/json",
   },
