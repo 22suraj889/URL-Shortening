@@ -42,9 +42,9 @@ const createShortLink = async (req, res) => {
       const existingLink = await findLinkByCode(shortCode);
       console.log("existingLink: ", existingLink);
       if (existingLink.length) {
-        return res.status(400).json({
+        return res.status(409).json({
           error:
-            "Short Code already exists. Please provide different short code for your url.",
+            "Duplicate Code",
         });
       }
     } else {
