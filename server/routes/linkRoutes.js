@@ -3,10 +3,12 @@ const router = express.Router();
 const {
   createShortLink,
   getLinks,
-  deleteLink,
+  deleteShortLink,
+  redirectToOriginalUrl,
 } = require("../controllers/linkController");
 
 router.post("/", createShortLink);
 router.get("/", getLinks);
-router.delete("/:code", deleteLink);
+router.delete("/:code", deleteShortLink);
+router.get("/:code", redirectToOriginalUrl);
 module.exports = router;

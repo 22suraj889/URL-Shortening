@@ -9,10 +9,11 @@ const pool = mysql2.createPool({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
+  multipleStatements: true
 });
 
 const setupDatabase = async () => {
-  const schemaPath = path.join(process.cwd(), "server", "db", "schema.sql");
+  const schemaPath = path.join(process.cwd(), "db", "schema.sql");
   const schema = fs.readFileSync(schemaPath, "utf-8");
 
   await pool.query(schema);

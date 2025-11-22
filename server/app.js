@@ -14,7 +14,16 @@ setupDatabase()
     console.error("DB Initialization failed:", err);
   });
 
+app.get("/healthz", (req, res) => {
+  res.json({
+    ok: true,
+    version: "1.0",
+    uptime: process.uptime(),
+  });
+});
+
 app.use("/api/links", linkRoutes);
+app.get("/:code", linkRoutes);
 app.listen(PORT, () => {
   console.log("Server is running...");
 });
