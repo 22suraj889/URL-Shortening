@@ -1,0 +1,11 @@
+CREATE DATABASE tinylink;
+USE tinylink;
+CREATE TABLE links(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    short_code VARCHAR(7) NOT NULL UNIQUE,
+    long_url TEXT NOT NULL,
+    short_url TEXT NOT NULL,
+    clicks INT DEFAULT 0,
+    last_clicked DATETIME DEFAULT NULL,
+    create_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
