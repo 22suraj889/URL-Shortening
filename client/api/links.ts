@@ -7,7 +7,7 @@ const api = axios.create({
   },
 });
 
-export async function createShortLink(data: { originalUrl: string; shortCode?: string } ) {
+export async function createShortLink(data) {
   try {
     const res = await api.post("/api/links", data);
     return res.data;
@@ -25,7 +25,7 @@ export async function getAllLinks() {
   }
 }
 
-export async function deleteShortLink(code: string) {
+export async function deleteShortLink(code) {
   try {
     const res = await api.delete(`/api/links/${code}`);
     return res.data;
@@ -34,7 +34,7 @@ export async function deleteShortLink(code: string) {
   }
 }
 
-export async function getLinkStats(code: string) {
+export async function getLinkStats(code) {
   try {
     console.log("Code in api: ", code);
     const res = await api.get(`/code/${code}`);
@@ -44,7 +44,7 @@ export async function getLinkStats(code: string) {
   }
 }
 
-export async function redirectToOriginalUrl(code: string) {
+export async function redirectToOriginalUrl(code) {
   try {
     const res = await api.get(`/${code}`);
   } catch (error) {
