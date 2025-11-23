@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://url-shortening-1.onrender.com", // example: http://localhost:5000
+  baseURL: "https://url-shortening-sepia-iota.vercel.app", // example: http://localhost:5000
   headers: {
     "Content-Type": "application/json",
   },
